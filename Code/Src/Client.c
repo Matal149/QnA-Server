@@ -24,9 +24,9 @@
 
 int main(int argc, char * argv[])
 {
-	printf("CLIENT : %s\t%d", argv[1], getppid());
-	sleep(10);
-	exit(0);
+   printf("CLIENT : %s\t%d\n", argv[1], getppid());
+    sleep(10);
+    exit(0);
 }
 
 

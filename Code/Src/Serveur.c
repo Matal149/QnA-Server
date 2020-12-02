@@ -19,26 +19,29 @@
 
 int main(int argc, char * argv[])
 {
-	int p1 = 0;
-	char tmp;
-	int dp, f;
-	char buf;
-
-	p1 = fork();
-
-	if(p1 != 0)
+    int p1 = 0;
+    char tmp;
+    int dp, f;
+    char buf;
+ 
+    p1 = fork();
+ 
+    if(p1 != 0)
     {
-    	printf("\nSERVEUR WAIT  %d  ..\n", p1 );
+        printf("\nSERVEUR WAIT  %d  ..\n", p1 );
         wait(NULL);
     }
     else
     {
-    	printf("\nEXECUTION CLIENT\n" );
-        execl("/usr/bin/xterm" , "xterm", "-e", "sudo ../Bin/Client", "Client", NULL);
+        printf("\nEXECUTION CLIENT\n" );
+        execl("/usr/bin/xterm" , "xterm", "-e", "./Client", "Client", NULL);
     }
-
+ 
     return 0;
 }
+
+
+
 
 
 
