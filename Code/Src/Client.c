@@ -12,59 +12,9 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-
-/*
-
-int main(int argc, char * argv[])
-{
-   printf("CLIENT : %s\t%d\n", argv[1], getppid());
-    sleep(10);
-    exit(0);
-}
-
-*/
-
-
-
-
-/*
-int main(void)
-{
-    int des;
-    int buf;
-
-	printf("\nDANS LE CLIENT\n" );
-    des=open("pipe",O_RDONLY);
-    read(des,&buf,sizeof(int));
-    printf("%d", buf);
-
-
-    close(des);
-
-    return 0;
-}
-*/
-
-/*
-int check_for_EOF()
-{
-    if (feof(stdin))
-    {
-       return 1;
-    }
-
-    int c = getc(stdin);
-
-    if (c == EOF)
-    {
-       return 1;
-    }
-
-    ungetc(c, stdin);
-}
-*/
-
 #define BUFFERSIZE 100
+
+//volatile int stopLecture;
 
 int flag = 1;
 
@@ -73,6 +23,12 @@ void catchCtrlC()
 {
    flag = 0;
    printf("passe ctrl C\n");
+}
+
+
+void stop(int sig){
+    printf("CLIENT : Arreter par le Serveur \n");
+    exit(0);
 }
 
 
@@ -89,26 +45,22 @@ int main(int argc, char * argv[])
 {
    int dp;
    printf("CLIENT : %s\t%d\n", argv[1], getppid());
-   dp=open("pipe",O_WRONLY);
+   dp=open("pipeInitial",O_WRONLY);
 
    char buffer[BUFFERSIZE] = {};
    
    signal(SIGINT, catchCtrlC);
 
+   //Signal pour voir si on doit stopper le fils
+   signal(SIGUSR1, stop);
+
    while(flag)
    {
-      //char buffer[BUFFERSIZE] = {};
       printf("Entre une chaine : \n");
       scanf("%s", buffer); //Permet de tout lire sauf les retours à la ligne
 
-      //getchar();
-
-      sleep(5);
+      //sleep(1);
       write(dp, buffer, strlen(buffer)+1 );
-      
-      //buffer[BUFFERSIZE] = {};
-      
-      //fflush(stdin);
    }
    printf("Fin While\n");
 //close(dp);
