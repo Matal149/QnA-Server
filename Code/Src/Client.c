@@ -1,6 +1,3 @@
-
-
-
 #include <stdio.h>
 #include <sys/stat.h>
 #include <sys/types.h>
@@ -12,15 +9,11 @@
 #include <errno.h>
 #include <string.h>
 
-
 #include <stdio.h>
 #include <fcntl.h>
 
 
-
-
-
-
+/*
 
 int main(int argc, char * argv[])
 {
@@ -29,50 +22,9 @@ int main(int argc, char * argv[])
     exit(0);
 }
 
-
-
-
-
-
-
-
-
-
-
-
-/*
-#define FIFO_FILE "MYFIFO"
-int main() {
-   int fd;
-   int end_process;
-   int stringlen;
-   char readbuf[80];
-   char end_str[5];
-   printf("FIFO_CLIENT: Send messages, infinitely, to end enter \"end\"\n");
-   fd = open(FIFO_FILE, O_CREAT|O_WRONLY);
-   strcpy(end_str, "end");
-   
-   while (1) {
-      printf("Enter string: ");
-      fgets(readbuf, sizeof(readbuf), stdin);
-      stringlen = strlen(readbuf);
-      readbuf[stringlen - 1] = '\0';
-      end_process = strcmp(readbuf, end_str);
-      
-      //printf("end_process is %d\n", end_process);
-      if (end_process != 0) {
-         write(fd, readbuf, strlen(readbuf));
-         printf("Sent string: \"%s\" and string length is %d\n", readbuf, (int)strlen(readbuf));
-      } else {
-         write(fd, readbuf, strlen(readbuf));
-         printf("Sent string: \"%s\" and string length is %d\n", readbuf, (int)strlen(readbuf));
-         close(fd);
-         break;
-      }
-   }
-   return 0;
-}
 */
+
+
 
 
 /*
@@ -92,3 +44,88 @@ int main(void)
     return 0;
 }
 */
+
+/*
+int check_for_EOF()
+{
+    if (feof(stdin))
+    {
+       return 1;
+    }
+
+    int c = getc(stdin);
+
+    if (c == EOF)
+    {
+       return 1;
+    }
+
+    ungetc(c, stdin);
+}
+*/
+
+#define BUFFERSIZE 100
+
+int flag = 1;
+
+
+void catchCtrlC()
+{
+   flag = 0;
+   printf("passe ctrl C\n");
+}
+
+
+void viderBuffer()
+{
+    int c = 0;
+    while (c != '\n' && c != EOF)
+    {
+        c = getchar();
+    }
+}
+
+int main(int argc, char * argv[])
+{
+   int dp;
+   printf("CLIENT : %s\t%d\n", argv[1], getppid());
+   dp=open("pipe",O_WRONLY);
+
+   char buffer[BUFFERSIZE] = {};
+   
+   signal(SIGINT, catchCtrlC);
+
+   while(flag)
+   {
+      //char buffer[BUFFERSIZE] = {};
+      printf("Entre une chaine : \n");
+      scanf("%s", buffer); //Permet de tout lire sauf les retours à la ligne
+
+      //getchar();
+
+      sleep(5);
+      write(dp, buffer, strlen(buffer)+1 );
+      
+      //buffer[BUFFERSIZE] = {};
+      
+      //fflush(stdin);
+   }
+   printf("Fin While\n");
+//close(dp);
+/*
+   char buffer[BUFFERSIZE];
+    printf("Enter a message: \n");
+    while(fgets(buffer, BUFFERSIZE , stdin) != NULL)
+    {
+      buffer[100] = {};
+      fflush(stdin);
+      setbuf(stdin, NULL);
+
+        printf("MESSAGE ENTRE : %s\n", buffer);
+        write(dp, buffer, strlen(buffer)+1);
+        
+    }
+*/
+   close(dp);
+   //exit(0);
+}
