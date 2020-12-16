@@ -8,38 +8,12 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
-
 #include <stdio.h>
 #include <fcntl.h>
 
-#define BUFFERSIZE 100
+#include "gestion_Client.h"
 
-//volatile int stopLecture;
 
-int flag = 1;
-
-void printMenuFils(void);
-
-void catchCtrlC()
-{
-   flag = 0;
-   printf("passe ctrl C\n");
-}
-
-void stop(int sig)
-{
-   printf("CLIENT : Arreter par le Serveur \n");
-   exit(0);
-}
-
-void viderBuffer()
-{
-   int c = 0;
-   while (c != '\n' && c != EOF)
-   {
-      c = getchar();
-   }
-}
 
 int main(int argc, char *argv[])
 {
@@ -61,7 +35,7 @@ int main(int argc, char *argv[])
    //Signal pour voir si on doit stopper le fils
    signal(SIGUSR1, stop);
    /*
-   while(flag)
+   while(flag_Client)
    {
       printf("Entre une chaine : \n");
       scanf("%s", buffer); //Permet de tout lire sauf les retours à la ligne
@@ -74,7 +48,7 @@ int main(int argc, char *argv[])
 
    while (1) //on boucle à l'infini
    {
-      printMenuFils();
+      printMenuClient();
       scanf("%c", &choixFils);
       getchar();
       switch (choixFils)
@@ -147,12 +121,3 @@ int main(int argc, char *argv[])
    //exit(0);
 }
 
-void printMenuFils(void)
-{
-   printf("\n\tHello jeune client entrepreneur");
-   printf("\n\nQuestionner le serveur............: 1\n");
-   //printf("Liste des mots clés...........: 2\n");
-   printf("Pour quitter le client.......................: 0\n");
-   printf("Ton choix: ");
-   rewind(stdin); //permet de se positionner au début d'un fichier, ici le flux d'entré
-}

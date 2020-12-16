@@ -14,59 +14,10 @@
 
 #include <ctype.h>
 
-#define TAILLE_MAX_CHAINE 100
+#include "gestion_Serveur.h"
 
-volatile int stopLecture = 1;
 
-void printMenuPere(void);
-
-int nb_clients; //Ajout d'une variable permettant de stocker le nb de clients
-
-void stoperLecture()
-{
-    //stopLecture = 0;
-    nb_clients--; //On vient de recevoir le signal de mort d'un client, on enlève 1 au nb de clients
-}
-
-//converti la chaine de caracteres en minuscules
-char *toLower(char *s)
-{
-    for (char *p = s; *p; p++)
-        *p = tolower(*p);
-    return s;
-}
-
-////Fonction qui traite les chaines de caractères reçues des clients. Vérification par mots-clés et affichage de la réponse
-void traitementChaineRecue(char *chaineRecue)
-{
-    //conversion de la chaine en minuscile pour faciliter le traitement
-    //char chaineMinuscule[TAILLE_MAX_CHAINE];
-    chaineRecue = toLower(chaineRecue);
-
-    if (strstr(chaineRecue, "oui") != NULL || strstr(chaineRecue, "non") != NULL || strstr(chaineRecue, "ah") != NULL)
-    {
-        printf("E Y E S, e-yes\n");
-    }
-    else if (strstr(chaineRecue, "yes") != NULL || strstr(chaineRecue, "nope") != NULL || strstr(chaineRecue, "geh") != NULL)
-    {
-        printf("Y U geh ?\n");
-    }
-    else if (strstr(chaineRecue, "intelligent") != NULL || strstr(chaineRecue, "malin") != NULL || strstr(chaineRecue, "smart") != NULL)
-    {
-        printf("Nan mais aussi t'abuses là, on te dis de PAS demander si je suis intelligent ou malin\n");
-        sleep(5);
-        printf("et toi, bien évidement, tu demandes (ノಠ益ಠ)ノ彡┻━┻\n");
-        sleep(3);
-        printf("Pour qui tu me prends ? Google ? (¬_¬)\n");
-        sleep(3);
-        printf("Bon en vrai je peux pas t'en vouloir c'est vrai que c'est tentant (^o^)\n");
-    }
-    else
-    {
-        // On ne détecte pas de mots-clés, on affiche un message explicatif
-        printf("Il nous est impossible pour le moment de vous répondre, l'intelligence de notre serveur n'est pas encore assez développée (aucun mot-clé n'a été détecté dans votre question) ¯\\_(ツ)_/¯\n");
-    }
-}
+//volatile int stopLecture = 1;
 
 int main(int argc, char *argv[])
 {
@@ -115,17 +66,19 @@ int main(int argc, char *argv[])
         do
         {
 
-            printMenuPere();
+            printMenuServeur();
             scanf(" %c", &choixPere);
             getchar();
 
             switch (choixPere)
             {
-            case '1':
-
+            case 'A':
+            case 'a':
+                printf("En ce moment il y a %d clients\n", nb_clients);
                 break;
 
-            case '3':
+            case 'C':
+            case 'c':
                 printf("Invocation d'un nouveau client\n");
 
                 if (pid > 0)
@@ -140,7 +93,8 @@ int main(int argc, char *argv[])
                 nb_clients++; //On  ajoute 1 au nombre total de clients en cours
                 break;
 
-            case '2':
+            case 'B':
+            case 'b':
                 if (pid == 0)
                 {
                     //Serveur
@@ -166,10 +120,19 @@ int main(int argc, char *argv[])
                     }
                     else //On a personne avec qui communiquer
                     {
-                        printf("Hey ya plus personne a qui parler, pour un dialogue faut deux non?\n");
+                        printf("ALLO ?\n");
+                        sleep(1);
+                        printf("Ah mais en fait ya plus personne a qui parler, pour un dialogue faut deux non?\n");
                     }
                 }
                 close(desc);
+                break;
+
+            case 'Q':
+            case 'q':
+                printf("\nJe me fermer et attend la fermeture des clients\nCiao à une prochaine fois\n");
+                wait(NULL);
+				return 0;
                 break;
 
             default:
@@ -185,13 +148,4 @@ int main(int argc, char *argv[])
     exit(0);
 }
 
-void printMenuPere(void)
-{
-    printf("\n\tBienvenue sur le Akinator du pauvre\n");
-    printf("Tu veux connaitre le nombre de client ?:\t\t\t 1\n");
-    printf("Pour parler avec les clients:\t\t\t\t\t 2\n");
-    printf("Tu veux créer un nouveau client ?:\t\t\t\t 3\n");
-    printf("Pour tout quitter \t\t\t\t\t\t\t 0\n");
-    printf("Ton choix: ");
-    rewind(stdin); //permet de se positionner au début d'un fichier, ici le flux d'entré
-}
+
