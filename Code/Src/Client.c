@@ -80,45 +80,45 @@ int main(int argc, char *argv[])
       switch (choixFils)
       {
       case '0':
-         //dp=open(arg[1],O_WRONLY);
-         //strcat(fermeture,Cpid);
-         //write(dp, fermeture,250);
-         close(dp); // On ferme le pipe
-         printf("Fermeture du pipe\n");
-         while (bclFermetureClient == 1)
+         dp=open(argv[1],O_WRONLY);
+         char quitterClient[BUFFERSIZE] = "Quitter "; //On stocke qu'on quitte, avec le mot-clé "quitter"
+         //strcat(quitterClient, "Quitter "); 
+         char stockClientPID[BUFFERSIZE] = {};
+         sprintf(stockClientPID, "%d", getpid());//On rajoute le pid pour savoir quel client on quitte
+         strcat(quitterClient, stockClientPID); //On concaténe les deux chaines de caractères
+         printf("%s", quitterClient);
+         write(dp, quitterClient, strlen(quitterClient)+1);// on écrit sur le pipe
+         close(dp);
+         printf("\nQuittage du pipe avec ce client %d\n", getpid());
+         while (bclFermetureClient == 1) //On boucle tant que l'utilisateur n'a pas entrer la commande Ctrl+D
          {
-            printf("Appuyer sur CTR+D pour fermer le client\n");
-            char buffer[1];
+            printf("Un  petit Ctrl+D pour quitter le client ?\n");
+            char bufDetectCtrlD[1];
 
-            if (fgets(buffer, 10, stdin) == NULL)
+            if (fgets(bufDetectCtrlD, 10, stdin) == NULL)
             {
-               bclFermetureClient = 0;
+               bclFermetureClient = 0; //On change la valeur de la variable, pour arreter la boucle
             }
             else
             {
-               printf("Saisi la bonne commande pour quitter\nJe t'aide un peu Ctrl+D (^o^)");
+               printf("Bon faudrait saisir la bonne commande pour quitter\nJe t'aide un peu (^o^) (Ctrl+D)");
             }
          }
 
-         printf("Fermeture du fils\n");
+         printf("Fermeture du client %d\n", getpid());
          exit(0);
          break;
 
       case '1':
-         printf("Tu veux demander quoi à Akinator du pauvre ? (⌐■_■):\n");
-         //scanf(" %[^\n]",question);
-         scanf("%s", buffer);
+         printf("Tu veux demander quoi à \"Akinator\" du pauvre ? (⌐■_■):\n");
+         scanf(" %[^\n]", buffer); //Ne bloque pas au premier espace rencontré
+         //scanf("%s", buffer); //Bloque au premier espace rencontré
          getchar();
-
-         //strcat(question,"\t");   //Ajout d'un caractere de séparation
-         //strcat(question,Cpid);		// On ajoute le pid a fin de la question
-
-         dp = open(argv[1], O_WRONLY); // Ouverture du PIPE puis ecriture de la question
-         //nbcarecrit = write(dp, question,sizeof(question));
+         dp = open(argv[1], O_WRONLY); // Ouverture du pipe
          write(dp, buffer, strlen(buffer) + 1);
 
-         sleep(1);  // Tempo d'une seconde
-         close(dp); // Fermeture du PIPE
+         sleep(1);
+         close(dp);
          break;
 
       default:
