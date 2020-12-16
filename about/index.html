@@ -4,26 +4,26 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta name="description" content="None">
         
         
-        <link rel="shortcut icon" href="img/favicon.ico">
-        <title>Projet SysExp</title>
-        <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="css/base.css" rel="stylesheet">
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+        <title>About - Projet SysExp</title>
+        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="../css/font-awesome.min.css" rel="stylesheet">
+        <link href="../css/base.css" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/rainbow.min.css">
 
-        <script src="js/jquery-1.10.2.min.js" defer></script>
-        <script src="js/bootstrap.min.js" defer></script>
+        <script src="../js/jquery-1.10.2.min.js" defer></script>
+        <script src="../js/bootstrap.min.js" defer></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
         <script>hljs.initHighlightingOnLoad();</script> 
     </head>
 
-    <body class="homepage">
+    <body>
         <div class="navbar fixed-top navbar-expand-lg navbar-dark bg-primary">
             <div class="container">
-                <a class="navbar-brand" href=".">Projet SysExp</a>
+                <a class="navbar-brand" href="..">Projet SysExp</a>
                 <!-- Expander button -->
                 <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse">
                     <span class="navbar-toggler-icon"></span>
@@ -33,14 +33,14 @@
                 <div id="navbar-collapse" class="navbar-collapse collapse">
                         <!-- Main navigation -->
                         <ul class="nav navbar-nav">
+                            <li class="navitem">
+                                <a href=".." class="nav-link">Home</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../manuel/" class="nav-link">Manuel d'utilisation</a>
+                            </li>
                             <li class="navitem active">
-                                <a href="." class="nav-link">Home</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="manuel/" class="nav-link">Manuel d'utilisation</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="about/" class="nav-link">About</a>
+                                <a href="./" class="nav-link">About</a>
                             </li>
                         </ul>
 
@@ -51,12 +51,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" class="nav-link disabled">
+                                <a rel="prev" href="../manuel/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="manuel/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -77,112 +77,12 @@
     
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
-            
-            <li class="nav-item" data-level="1"><a href="#qna-server-docs" class="nav-link">QnA-Server Docs</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#presentation-du-projet" class="nav-link">Présentation du projet</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#presentation-des-roles" class="nav-link">Présentation des rôles</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#timeline-prevu-initialement" class="nav-link">Timeline prévu initialement</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-            <li class="nav-item" data-level="2"><a href="#timeline-effective" class="nav-link">Timeline effective</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
         </ul>
     </div>
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="qna-server-docs">QnA-Server Docs</h1>
-<h4 id="sujet-2-serveur-qna">Sujet 2 : Serveur QnA</h4>
-<h2 id="presentation-du-projet">Présentation du projet</h2>
-<pre><code>Lors de ce projet, nous avions pour but de faire un serveur capable de répondre à plusieurs questions basiques 
-par des clients différents.
-
-Pour cela, le programme serveur prendra 2 paramètres :
-
-    -Le nom du pipe
-
-    -Le nombre de clients N
-
-Au démarrage le processus serveur active N clients qui communique avec le serveur via N pipes nommées dont le nom 
-sera passé en paramètre au fils pour que les processus puissent communiquer.
-
-De plus le processus serveur doit être en écoute sur la pipe, le processus client lit des caractères tapés au 
-clavier et les écrit dans la pipe.
-</code></pre>
-<h2 id="presentation-des-roles">Présentation des rôles</h2>
-<ul>
-<li><code>MAPELLI Jules</code> - Chef de projet / SCRUM Master : gère l'équipe et fait le lien avec le client</li>
-<li><code>ABELLANEDA Thibaut</code> - Archi Soft : Responsable du design du produit</li>
-<li><code>MAHIEU Antoine</code> - Commercial : Responsable du Pitch de présentation au client</li>
-<li><code>GONIN Matthieu</code> - Admin Sys : Responsable machine / RZO / Sécu...</li>
-</ul>
-<h2 id="timeline-prevu-initialement">Timeline prévu initialement</h2>
-<h4 id="1911"><code>19/11</code></h4>
-<ul>
-<li>Répartition des rôles.</li>
-<li>Appropriation du sujet.</li>
-<li>Plan d'actions sur les différentes journées de travail</li>
-<li>Mise en place du GitHub</li>
-</ul>
-<h4 id="2611"><code>26/11</code></h4>
-<ul>
-<li>Création du script de mise en place de la zone de travail</li>
-<li>Itération 1</li>
-</ul>
-<h4 id="0212"><code>02/12</code></h4>
-<ul>
-<li>Itération 2</li>
-</ul>
-<h4 id="0312"><code>03/12</code></h4>
-<ul>
-<li>Itération 3</li>
-</ul>
-<h4 id="1712"><code>17/12</code></h4>
-<ul>
-<li>Rendu Projet</li>
-</ul>
-<h2 id="timeline-effective">Timeline effective</h2>
-<h4 id="1911_1"><code>19/11</code></h4>
-<ul>
-<li>Répartition des rôles.</li>
-<li>Appropriation du sujet.</li>
-<li>Plan d'actions sur les différentes journées de travail</li>
-<li>Mise en place du GitHub</li>
-</ul>
-<h4 id="2611_1"><code>26/11</code></h4>
-<ul>
-<li>Création du script de mise en place de la zone de travail</li>
-<li>Début de l'itération 1</li>
-</ul>
-<h4 id="0212_1"><code>02/12</code></h4>
-<ul>
-<li>Installation d'une nouvelle VM (car problème avec LinuxMint)</li>
-<li>Problèmes d'utilisation du CTRL + D</li>
-<li>Tentative de débogage</li>
-</ul>
-<h4 id="0312_1"><code>03/12</code></h4>
-<ul>
-<li>Modification du cahier des charges avec le client</li>
-<li>Itération 1 (modifié)</li>
-<li>Affichage de plusieurs consoles clients</li>
-<li>Itération 2 (modifié)</li>
-</ul>
-<h4 id="1712_1"><code>17/12</code></h4>
-<ul>
-<li>Rendu Projet</li>
-</ul></div>
+</div>
             </div>
         </div>
 
@@ -191,11 +91,11 @@ clavier et les écrit dans la pipe.
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
         <script>
-            var base_url = ".",
+            var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="js/base.js" defer></script>
-        <script src="search/main.js" defer></script>
+        <script src="../js/base.js" defer></script>
+        <script src="../search/main.js" defer></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -263,8 +163,3 @@ clavier et les écrit dans la pipe.
 
     </body>
 </html>
-
-<!--
-MkDocs version : 1.1.2
-Build Date UTC : 2020-12-16 17:33:10.940049+00:00
--->
