@@ -8,14 +8,11 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
-
 #include <stdio.h>
 #include <fcntl.h>
-
 #include <ctype.h>
 
 #include "gestion_Serveur.h"
-
 
 //volatile int stopLecture = 1;
 
@@ -122,7 +119,7 @@ int main(int argc, char *argv[])
                     {
                         printf("ALLO ?\n");
                         sleep(1);
-                        printf("Ah mais en fait ya plus personne a qui parler, pour un dialogue faut deux non?\n");
+                        printf("Ah mais en fait ya plus personne a qui parler !\n");
                     }
                 }
                 close(desc);
@@ -130,12 +127,15 @@ int main(int argc, char *argv[])
 
             case 'Q':
             case 'q':
-                printf("\nJe me fermer et attend la fermeture des clients\nCiao à une prochaine fois\n");
+                printf("\nJ'attend la fermeture des clients et me ferme\nCiao à une prochaine fois\n");
+                kill(0, SIGTERM); //SIGTERM permet de terminer proprement un process
+                                  // cf https://korben.info/commande-kill-linux-tuer-processus.html + signal.h l.112
                 wait(NULL);
-				return 0;
+                return 0;
                 break;
 
             default:
+                printf("J'ai pas compris ce que tu me demandes, entre une commande (magique) correcte\t(ノ°∀°)ノ⌒･*:.｡. .｡.:*･゜ﾟ･*☆\n");
                 break;
             }
         } while (1);
@@ -147,5 +147,3 @@ int main(int argc, char *argv[])
 
     exit(0);
 }
-
-

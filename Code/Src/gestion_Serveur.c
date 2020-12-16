@@ -26,13 +26,30 @@ void traitementChaineRecue(char *chaineRecue)
     //char chaineMinuscule[TAILLE_MAX_CHAINE];
     chaineRecue = toLower(chaineRecue);
 
-    if (strstr(chaineRecue, "oui") != NULL || strstr(chaineRecue, "non") != NULL || strstr(chaineRecue, "ah") != NULL)
+    if (strstr(chaineRecue, "comment") != NULL || strstr(chaineRecue, "non") != NULL || strstr(chaineRecue, "ah") != NULL)
     {
-        printf("E Y E S, e-yes\n");
+        if(strstr(chaineRecue, "blanquette") != NULL )
+        {
+            printf("La blanquette est bonne\n");
+        }
+        
     }
-    else if (strstr(chaineRecue, "yes") != NULL || strstr(chaineRecue, "nope") != NULL || strstr(chaineRecue, "geh") != NULL)
+    else if (strstr(chaineRecue, "dictature") != NULL)
     {
-        printf("Y U geh ?\n");
+        printf("Une dictature c'est quand les gens sont communistes, déjà.\n");
+        sleep(1);
+        printf("Qu'ils ont froid, avec des chapeaux gris et des chaussures à fermeture éclair.\n");
+        sleep(1);
+        printf("Cest ça, une dictature.\n");
+    }
+    else if (strstr(chaineRecue, "shut") != NULL || strstr(chaineRecue, "up") != NULL )
+    {
+        if (strstr(chaineRecue, "ass") != NULL)
+        {
+            printf("D’accord, faisons comme ça, ravi de t’avoir revu l’ami.\n");
+        }
+        
+        //printf("Y U geh ?\n");
     }
     else if (strstr(chaineRecue, "intelligent") != NULL || strstr(chaineRecue, "malin") != NULL || strstr(chaineRecue, "smart") != NULL)
     {
@@ -47,7 +64,7 @@ void traitementChaineRecue(char *chaineRecue)
     else
     {
         // On ne détecte pas de mots-clés, on affiche un message explicatif
-        printf("Il nous est impossible pour le moment de vous répondre, l'intelligence de notre serveur n'est pas encore assez développée (aucun mot-clé n'a été détecté dans votre question) ¯\\_(ツ)_/¯\n");
+        printf("C'est impossible pour moi de te répondre, mon intelligence n'est pas assez développée (aucun mot-clé n'a été détecté dans votre question) ¯\\_(ツ)_/¯\n");
     }
 }
 

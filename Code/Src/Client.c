@@ -13,8 +13,6 @@
 
 #include "gestion_Client.h"
 
-
-
 int main(int argc, char *argv[])
 {
    int dp;
@@ -29,6 +27,9 @@ int main(int argc, char *argv[])
    printf("ouverture PIPE : %s\n", argv[1]);
 
    char buffer[BUFFERSIZE] = {};
+   //char stockClientPID2[BUFFERSIZE] = {};
+
+   int pid_client = getpid();
 
    signal(SIGINT, catchCtrlC);
 
@@ -54,14 +55,14 @@ int main(int argc, char *argv[])
       switch (choixFils)
       {
       case '0':
-         dp=open(argv[1],O_WRONLY);
+         dp = open(argv[1], O_WRONLY);
          char quitterClient[BUFFERSIZE] = "Quitter "; //On stocke qu'on quitte, avec le mot-clé "quitter"
-         //strcat(quitterClient, "Quitter "); 
+         //strcat(quitterClient, "Quitter ");
          char stockClientPID[BUFFERSIZE] = {};
-         sprintf(stockClientPID, "%d", getpid());//On rajoute le pid pour savoir quel client on quitte
-         strcat(quitterClient, stockClientPID); //On concaténe les deux chaines de caractères
+         sprintf(stockClientPID, "%d", getpid()); //On rajoute le pid pour savoir quel client on quitte
+         strcat(quitterClient, stockClientPID);   //On concaténe les deux chaines de caractères
          printf("%s", quitterClient);
-         write(dp, quitterClient, strlen(quitterClient)+1);// on écrit sur le pipe
+         write(dp, quitterClient, strlen(quitterClient) + 1); // on écrit sur le pipe
          close(dp);
          printf("\nQuittage du pipe avec ce client %d\n", getpid());
          while (bclFermetureClient == 1) //On boucle tant que l'utilisateur n'a pas entrer la commande Ctrl+D
@@ -84,12 +85,25 @@ int main(int argc, char *argv[])
          break;
 
       case '1':
+         dp = open(argv[1], O_WRONLY); // Ouverture du pipe
+         
+         char stockClientPID2[BUFFERSIZE] = {};
+         strcat(stockClientPID2, "Msg envoyé par : ");
+         sprintf(stockClientPID2, "%d", getpid()); //On rajoute le pid pour savoir quel client on quitte
+         strcat(stockClientPID2, "  ");
+
+         char demande_client[BUFFERSIZE] = {};
+         strcpy(demande_client, stockClientPID2);
+         //sprintf(demande_client, "%s", stockClientPID2);
+         //sprintf(demande_client, "%s", stockClientPID2);
          printf("Tu veux demander quoi à \"Akinator\" du pauvre ? (⌐■_■):\n");
          scanf(" %[^\n]", buffer); //Ne bloque pas au premier espace rencontré
          //scanf("%s", buffer); //Bloque au premier espace rencontré
+         strcat(demande_client, buffer);
          getchar();
-         dp = open(argv[1], O_WRONLY); // Ouverture du pipe
-         write(dp, buffer, strlen(buffer) + 1);
+
+         
+         write(dp, demande_client, strlen(demande_client) + 1);
 
          sleep(1);
          close(dp);
@@ -120,4 +134,3 @@ int main(int argc, char *argv[])
    //close(dp);
    //exit(0);
 }
-

@@ -13,7 +13,7 @@
 #include <ctype.h>
 
 
-#define BUFFERSIZE 100
+#define BUFFERSIZE 300
 
 
 int flag_Client;
