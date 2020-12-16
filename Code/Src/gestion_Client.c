@@ -27,8 +27,7 @@ void printMenuClient(void)
 {
    printf("\n\tHello jeune client entrepreneur");
    printf("\n\nQuestionner le serveur............: 1\n");
-   //printf("Liste des mots clés...........: 2\n");
    printf("Pour quitter le client.......................: 0\n");
-   printf("Ton choix: ");
+   printf("Que choisis-tu ?: ");
    rewind(stdin); //permet de se positionner au début d'un fichier, ici le flux d'entré
 }

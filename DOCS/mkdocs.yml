@@ -1,0 +1,10 @@
+site_name: Projet SysExp
+
+theme:
+  name: darkly
+
+
+nav:
+    - Home: index.md
+    - Manuel d'utilisation: manuel.md
+    - About: about.md

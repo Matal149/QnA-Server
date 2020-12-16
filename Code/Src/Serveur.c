@@ -15,6 +15,8 @@
 #include "gestion_Serveur.h"
 
 //volatile int stopLecture = 1;
+char KEYWORDS_LIST[1000] = {"comment, blanquette, dictature, hareng, grand, bien, voiture, sale, dommage, jolie, je, suis, lache, allemands, nazis, shut, up, ass, idee, ensemble, égal, intelligent, malin, smart"};
+
 
 int main(int argc, char *argv[])
 {
@@ -40,6 +42,8 @@ int main(int argc, char *argv[])
         execl("/usr/bin/xterm", "xterm", "-e", "./Client", argv[2], "Client", NULL);
     }
     */
+
+    printAvertissementServeur();
 
     //Au lieu de créer un seul fork pour un seul client on doit en créer un pour chaque clientdemander, on utilise une boucler
     nb_clients = atoi(argv[1]); //Conversion du nombre passé en argument en entier
@@ -94,7 +98,7 @@ int main(int argc, char *argv[])
             case 'b':
                 if (pid == 0)
                 {
-                    //Serveur
+                    //C'est les clients qui gèrent les actions ici
                 }
                 else
                 {
@@ -118,11 +122,18 @@ int main(int argc, char *argv[])
                     else //On a personne avec qui communiquer
                     {
                         printf("ALLO ?\n");
-                        sleep(1);
+                        sleep(2);
                         printf("Ah mais en fait ya plus personne a qui parler !\n");
                     }
                 }
                 close(desc);
+                break;
+
+            case 'D':
+            case 'd':
+                printf("\nVoici une bien belle liste de mots-clés\n");
+                printf("%s", KEYWORDS_LIST);
+                printf("\n");
                 break;
 
             case 'Q':
@@ -141,7 +152,7 @@ int main(int argc, char *argv[])
         } while (1);
     }
     //fin boucle
-    printf("FIN Programme\n");
+    //printf("FIN Programme\n");
     close(desc);
     wait(NULL);
 

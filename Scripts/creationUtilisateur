@@ -1,5 +1,5 @@
 #!/bin/bash
 
 sudo useradd isen -U -m -s /bin/bash
-su isen
+sudo su isen
 mkdir /home/isen/travail

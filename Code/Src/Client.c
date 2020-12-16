@@ -21,10 +21,10 @@ int main(int argc, char *argv[])
 
    int bclFermetureClient = 1; //On déclare une varialbe permlettant de boucler à l'infini tant qu'on a pas effectuer la bonne conbinaison de touches (ctrl+D)
 
-   printf("CLIENT : %s\t%d\n", argv[1], getppid());
+   //printf("CLIENT : %s\t%d\n", argv[1], getppid());
    dp = open(argv[1], O_WRONLY);
 
-   printf("ouverture PIPE : %s\n", argv[1]);
+   //printf("ouverture PIPE : %s\n", argv[1]);
 
    char buffer[BUFFERSIZE] = {};
    //char stockClientPID2[BUFFERSIZE] = {};
@@ -61,10 +61,10 @@ int main(int argc, char *argv[])
          char stockClientPID[BUFFERSIZE] = {};
          sprintf(stockClientPID, "%d", getpid()); //On rajoute le pid pour savoir quel client on quitte
          strcat(quitterClient, stockClientPID);   //On concaténe les deux chaines de caractères
-         printf("%s", quitterClient);
+         //printf("%s", quitterClient);
          write(dp, quitterClient, strlen(quitterClient) + 1); // on écrit sur le pipe
          close(dp);
-         printf("\nQuittage du pipe avec ce client %d\n", getpid());
+         //printf("\nQuittage du pipe avec ce client %d\n", getpid());
          while (bclFermetureClient == 1) //On boucle tant que l'utilisateur n'a pas entrer la commande Ctrl+D
          {
             printf("Un  petit Ctrl+D pour quitter le client ?\n");
@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
          strcpy(demande_client, stockClientPID2);
          //sprintf(demande_client, "%s", stockClientPID2);
          //sprintf(demande_client, "%s", stockClientPID2);
-         printf("Tu veux demander quoi à \"Akinator\" du pauvre ? (⌐■_■):\n");
+         printf("Que veux-tu demander à \"Akinator\" du pauvre ? (⌐■_■):\n");
          scanf(" %[^\n]", buffer); //Ne bloque pas au premier espace rencontré
          //scanf("%s", buffer); //Bloque au premier espace rencontré
          strcat(demande_client, buffer);
