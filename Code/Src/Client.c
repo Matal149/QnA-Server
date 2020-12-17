@@ -96,7 +96,7 @@ int main(int argc, char *argv[])
          strcpy(demande_client, stockClientPID2);
          //sprintf(demande_client, "%s", stockClientPID2);
          //sprintf(demande_client, "%s", stockClientPID2);
-         printf("Que veux-tu demander à \"Akinator\" du pauvre ? (⌐■_■):\n");
+         printf("Que veux-tu demander à OSS \"Akinator\"  ? (⌐■_■):\n");
          scanf(" %[^\n]", buffer); //Ne bloque pas au premier espace rencontré
          //scanf("%s", buffer); //Bloque au premier espace rencontré
          strcat(demande_client, buffer);

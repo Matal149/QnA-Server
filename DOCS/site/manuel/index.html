@@ -12,7 +12,7 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/rainbow.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/docco.min.css">
 
         <script src="../js/jquery-1.10.2.min.js" defer></script>
         <script src="../js/bootstrap.min.js" defer></script>
@@ -36,11 +36,11 @@
                             <li class="navitem">
                                 <a href=".." class="nav-link">Home</a>
                             </li>
+                            <li class="navitem">
+                                <a href="../architecture/" class="nav-link">Architecture du projet</a>
+                            </li>
                             <li class="navitem active">
                                 <a href="./" class="nav-link">Manuel d'utilisation</a>
-                            </li>
-                            <li class="navitem">
-                                <a href="../about/" class="nav-link">About</a>
                             </li>
                         </ul>
 
@@ -51,12 +51,12 @@
                             </a>
                         </li>
                             <li class="nav-item">
-                                <a rel="prev" href=".." class="nav-link">
+                                <a rel="prev" href="../architecture/" class="nav-link">
                                     <i class="fa fa-arrow-left"></i> Previous
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../about/" class="nav-link">
+                                <a rel="next" class="nav-link disabled">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -78,22 +78,17 @@
     <div id="toc-collapse" class="navbar-collapse collapse card bg-secondary">
         <ul class="nav flex-column">
             
-            <li class="nav-item" data-level="1"><a href="#titre-de-niveau-1" class="nav-link">Titre de niveau 1</a>
+            <li class="nav-item" data-level="1"><a href="#manuel-utilisateur" class="nav-link">Manuel utilisateur</a>
               <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#titre-de-niveau-2" class="nav-link">Titre de niveau 2</a>
-              <ul class="nav flex-column">
-              </ul>
-            </li>
-              </ul>
-            </li>
-            
-            <li class="nav-item" data-level="1"><a href="#a-first-level-header" class="nav-link">A First Level Header</a>
-              <ul class="nav flex-column">
-            <li class="nav-item" data-level="2"><a href="#a-second-level-header" class="nav-link">A Second Level Header</a>
+            <li class="nav-item" data-level="2"><a href="#lancement-de-lapplication" class="nav-link">Lancement de l'application</a>
               <ul class="nav flex-column">
               </ul>
             </li>
-            <li class="nav-item" data-level="2"><a href="#this-is-an-h2-in-a-blockquote" class="nav-link">This is an H2 in a blockquote</a>
+            <li class="nav-item" data-level="2"><a href="#fonctionnalites-du-serveur" class="nav-link">Fonctionnalités du serveur</a>
+              <ul class="nav flex-column">
+              </ul>
+            </li>
+            <li class="nav-item" data-level="2"><a href="#fonctionnalites-des-clients" class="nav-link">Fonctionnalités des clients</a>
               <ul class="nav flex-column">
               </ul>
             </li>
@@ -104,74 +99,96 @@
 </div></div>
                     <div class="col-md-9" role="main">
 
-<h1 id="titre-de-niveau-1">Titre de niveau 1</h1>
-<pre><code>* Une puce
-    oui c'est bien
-
-* Une autre puce
-* Et encore une autre puce !
-+   Candy.
-+   Gum.
-+   Booze.
-1.  Red
-2.  Green
-3.  Blue
-</code></pre>
-<hr />
-<h2 id="titre-de-niveau-2">Titre de niveau 2</h2>
-<pre><code>* Une puce
-* Une autre puce
-* Et encore une autre puce !
-I get 10 times more traffic from [Google][1] than from [Yahoo][2] or [MSN][3].
-[1]: http://google.com/        "Google"
-[2]: http://search.yahoo.com/  "Yahoo Search"
-[3]: http://search.msn.com/    "MSN Search"
-</code></pre>
-<hr />
-<h3 id="titre-de-niveau-3">Titre de niveau 3</h3>
-<pre><code>* Une puce
-* Une autre puce
-* Et encore une autre puce !
-</code></pre>
-<hr />
-<p>Voici un code en C :</p>
-
-<pre><code>int main()
-{
-    …
-    switch (choix)
-    {
-    case 'A':
-    case 'a':
-        *actions*
-        break;
-    }
-    …
-}
-</code></pre>
-
-<hr />
-<p>Voici du <code>code incorporé.</code></p>
-<pre><code>Voici un bloc de code.
-</code></pre>
-<p>Voici comment obtenir du texte en <strong>gras</strong>.</p>
-<p>Voici comment obtenir du texte en <em>italique</em>.</p>
-<p>Some of these words <em>are emphasized</em>.
-Some of these words <em>are emphasized also</em>.</p>
-<p>Use two asterisks for <strong>strong emphasis</strong>.
-Or, if you prefer, <strong>use two underscores instead</strong>.</p>
-<h1 id="a-first-level-header">A First Level Header</h1>
-<h2 id="a-second-level-header">A Second Level Header</h2>
-<p>Now is the time for all good men to come to
-the aid of their country. This is just a
-regular paragraph.</p>
-<p>The quick brown fox jumped over the lazy
-dog's back.</p>
-<h3 id="header-3">Header 3</h3>
+<h1 id="manuel-utilisateur">Manuel utilisateur</h1>
 <blockquote>
-<p>This is a blockquote.</p>
-<p>This is the second paragraph in the blockquote.</p>
-<h2 id="this-is-an-h2-in-a-blockquote">This is an H2 in a blockquote</h2>
+<p>Cette page est consacrée à l'explication des fonctionnalités de l'application
+  Il s'articule en trois partie</p>
+<blockquote>
+<ul>
+<li>Lancement de l'application</li>
+<li>Fonctionnalités du serveur</li>
+<li>Fonctionnalités des clients</li>
+</ul>
+</blockquote>
+</blockquote>
+<h2 id="lancement-de-lapplication">Lancement de l'application</h2>
+<blockquote>
+<p>Pour lancer l'application, vous devez lancer l'éxecutable <strong>Serveur</strong></p>
+<blockquote>
+<ul>
+<li>Pour ce faire, déplacez vous dans le sous-dossier <strong>Bin</strong> au moyen de la commande suivante :</li>
+</ul>
+</blockquote>
+</blockquote>
+<pre><code class="language-sh"># Depuis la racine du projet
+cd Code/Bin/
+</code></pre>
+<blockquote>
+<p>Après, toujours dans votre terminal, entrez la commande</p>
+</blockquote>
+<pre><code class="language-sh"># Depuis le sous dossier Bin
+
+./Serveur 2 test
+
+# Explication de la commande
+#   ./Serveur : nom de l'éxecutable à lancer.
+#   2 : nombre de clients, lancés dès le démarrage initial de l'application,
+#       vous pouvez en mettre autant que vous le souhaitez.
+#   test : nom du pipe avec lequel le serveur et les clients vont parler durant cette session, 
+#          effectif jusqu'à ce que l'utilisateur quitte l'application.
+</code></pre>
+<blockquote>
+<h2 id="fonctionnalites-du-serveur">Fonctionnalités du serveur</h2>
+<p>Présentation des fonctionnalités du serveur</p>
+<p>Dans le terminal représentant le serveur, vous serez acceulli avec avec le menu suivant :</p>
+<ul>
+<li>
+<p>Connaître le nombre de clients</p>
+<blockquote>
+<p>Le choix <strong>"Tu veux connaitre le nombre de client ?: <strong><em>_</em></strong><strong><em>_</em></strong> A"</strong></p>
+<p>Permet, en appuyant sur '<strong>A</strong>', de connaître le nombre de clients pouvant être gérés par le serveur pour la session courante</p>
+</blockquote>
+</li>
+<li>
+<p>Communiquer avec les clients</p>
+<blockquote>
+<p>Le choix <strong>"Pour parler avec les clients: <strong><em>_</em></strong><strong><em>_</em></strong> B"</strong></p>
+<p>Permet, en appuyant sur '<strong>B</strong>', d'entrer dans une routine d'écoute des clients, ainsi nous pouvons voir les questions posées par les clients et afficher les réponses</p>
+</blockquote>
+</li>
+<li>
+<p>Créer un nouveau client</p>
+<blockquote>
+<p>Le choix <strong>"Tu veux créer un nouveau client ?: <strong><em>_</em></strong><strong><em>_</em></strong> C"</strong></p>
+<p>Permet, en appuyant sur '<strong>C</strong>', de créer un nouveau client pouvant être géré par le serveur</p>
+</blockquote>
+</li>
+<li>
+<p>Connaître les mots-clés détectables par le serveur</p>
+<blockquote>
+<p>Le choix <strong>"Une liste de mots-clés, c'est bien non ?: <strong><em>_</em></strong><strong><em>_</em></strong> D"</strong></p>
+<p>Permet, en appuyant sur '<strong>D</strong>', d'afficher une liste de mots-clés, s'ils sont présents dans les questions posées par les clients, le serveur pourra les détecter et répondre de manière adéquate.</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="fonctionnalites-des-clients">Fonctionnalités des clients</h2>
+<p>Présentation des fonctionnalités des clients</p>
+<ul>
+<li>
+<p>Questionner le serveur</p>
+<blockquote>
+<p>Le choix <strong>"Questionner le serveur <strong><em>_</em></strong><strong><em>_</em></strong> 1"</strong></p>
+<p>Permet, en appuyant sur '<strong>1</strong>', de poser une question au serveur, qu'il traitrera, et répondra.</p>
+</blockquote>
+</li>
+<li>
+<p>Quitter le client courant</p>
+<blockquote>
+<p>Le choix <strong>"Pour parler avec les clients: <strong><em>_</em></strong><strong><em>_</em></strong> 0"</strong></p>
+<p>Permet, en appuyant sur '<strong>0</strong>', de quitter le client courant </p>
+</blockquote>
+</li>
+</ul>
 </blockquote></div>
             </div>
         </div>

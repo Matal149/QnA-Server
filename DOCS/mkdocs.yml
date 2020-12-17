@@ -1,10 +1,10 @@
 site_name: Projet SysExp
 
 theme:
-  name: darkly
+  name: flatly
 
 
 nav:
     - Home: index.md
+    - Architecture du projet: architecture.md
     - Manuel d'utilisation: manuel.md
-    - About: about.md

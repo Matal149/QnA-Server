@@ -104,7 +104,7 @@ void traitementChaineRecue(char *chaineRecue)
 
 void printMenuServeur(void)
 {
-    printf("\n----Bienvenue sur le Akinator du pauvre----\n\n");
+    printf("\n----Bienvenue sur le OSS Akinator----\n\n");
     printf("Tu veux connaitre le nombre de client ?:\t\t\t A\n");
     printf("Pour parler avec les clients:\t\t\t\t\t B\n");
     printf("Tu veux créer un nouveau client ?:\t\t\t\t C\n");

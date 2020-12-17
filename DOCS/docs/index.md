@@ -1,4 +1,4 @@
-# QnA-Server Docs
+# OSS Akinator
 
 ####Sujet 2 : Serveur QnA
 
@@ -6,8 +6,11 @@
 
 ## Présentation du projet
 
-    Lors de ce projet, nous avions pour but de faire un serveur capable de répondre à plusieurs questions basiques 
-    par des clients différents. 
+    Lors de ce projet, nous avions pour but de faire un serveur capable de répondre à plusieurs questions 
+    basiques par des clients différents.
+
+    Nous avons décidés que le thème des questions/réponses disponibles serait les répliques des films : 
+    OSS 117. 
 
     Pour cela, le programme serveur prendra 2 paramètres : 
 
@@ -15,11 +18,11 @@
 
         -Le nombre de clients N 
 
-    Au démarrage le processus serveur active N clients qui communique avec le serveur via N pipes nommées dont le nom 
-    sera passé en paramètre au fils pour que les processus puissent communiquer. 
+    Au démarrage le processus serveur active N clients qui communique avec le serveur via N pipes nommées 
+    dont le nom sera passé en paramètre au fils pour que les processus puissent communiquer. 
 
-    De plus le processus serveur doit être en écoute sur la pipe, le processus client lit des caractères tapés au 
-    clavier et les écrit dans la pipe. 
+    De plus le processus serveur doit être en écoute sur la pipe, le processus client lit des caractères 
+    tapés au clavier et les écrit dans le pipe. 
 
 
 ## Présentation des rôles
